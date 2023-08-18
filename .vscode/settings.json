@@ -20,4 +20,8 @@
     "editor.tabSize": 4,
     "editor.defaultFormatter": "ms-python.python"
   },
+  "cSpell.words": [
+    "mysite",
+    "Unfollow"
+  ],
 }
