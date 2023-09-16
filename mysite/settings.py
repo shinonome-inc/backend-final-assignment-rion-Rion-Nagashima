@@ -127,6 +127,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = "accounts.User"
 
-LOGIN_URL = "login"
-LOGOUT_URL = "logout"
-LOGIN_REDIRECT_URL = "profile"  # これはUserProfileViewのURL名を指します
+# LOGIN_URL = "login"
+# LOGOUT_URL = "logout"
+# LOGIN_REDIRECT_URL = "profile"
