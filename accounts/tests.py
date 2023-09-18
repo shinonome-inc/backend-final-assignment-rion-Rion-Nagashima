@@ -109,10 +109,12 @@ class TestSignupView(TestCase):
         self.assertIn("This password is too short. It must contain at least 8 characters.", form.errors["password1"])
 
     def test_failure_post_with_password_similar_to_username(self):
-        invalid_data = {"username": "testuser",
-                        "email": "test@test.com",
-                        "password1": "testuser",
-                        "password2": "testuser"}
+        invalid_data = {
+            "username": "testuser",
+            "email": "test@test.com",
+            "password1": "testuser",
+            "password2": "testuser",
+        }
         response = self.client.post(self.url, invalid_data)
         form = response.context["form"]
         self.assertEqual(response.status_code, 200)
@@ -121,10 +123,12 @@ class TestSignupView(TestCase):
         self.assertIn("The password is too similar to the username.", form.errors["password1"])
 
     def test_failure_post_with_only_numbers_password(self):
-        invalid_data = {"username": "testuser",
-                        "email": "test@test.com",
-                        "password1": "12345678",
-                        "password2": "12345678"}
+        invalid_data = {
+            "username": "testuser",
+            "email": "test@test.com",
+            "password1": "12345678",
+            "password2": "12345678",
+        }
         response = self.client.post(self.url, invalid_data)
         form = response.context["form"]
         self.assertEqual(response.status_code, 200)
@@ -145,6 +149,7 @@ class TestSignupView(TestCase):
         self.assertFalse(User.objects.filter(username=invalid_data["username"]).exists())
         self.assertFalse(form.is_valid())
         self.assertIn("The two password fields didn’t match.", form.errors["password2"])
+
 
 # class TestLogoutView(TestCase):
 #    def test_success_post(self):
