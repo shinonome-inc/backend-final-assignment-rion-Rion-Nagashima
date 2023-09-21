@@ -106,7 +106,7 @@ class TestSignupView(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertFalse(User.objects.filter(username=invalid_data["username"]).exists())
         self.assertFalse(form.is_valid())
-        self.assertIn("This password is too short. It must contain at least 8 characters.", form.errors["password1"])
+        self.assertIn("このパスワードは短すぎます。最低 8 文字以上必要です。", form.errors["password2"])
 
     def test_failure_post_with_password_similar_to_username(self):
         invalid_data = {
@@ -120,7 +120,7 @@ class TestSignupView(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertFalse(User.objects.filter(username=invalid_data["username"]).exists())
         self.assertFalse(form.is_valid())
-        self.assertIn("The password is too similar to the username.", form.errors["password1"])
+        self.assertIn("このパスワードは ユーザー名 と似すぎています。", form.errors["password2"])
 
     def test_failure_post_with_only_numbers_password(self):
         invalid_data = {
@@ -134,7 +134,7 @@ class TestSignupView(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertFalse(User.objects.filter(username=invalid_data["username"]).exists())
         self.assertFalse(form.is_valid())
-        self.assertIn("The password is entirely numeric.", form.errors["password1"])
+        self.assertIn("このパスワードは数字しか使われていません。", form.errors["password2"])
 
     def test_failure_post_with_mismatch_password(self):
         invalid_data = {
@@ -148,7 +148,7 @@ class TestSignupView(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertFalse(User.objects.filter(username=invalid_data["username"]).exists())
         self.assertFalse(form.is_valid())
-        self.assertIn("The two password fields didn’t match.", form.errors["password2"])
+        self.assertIn("確認用パスワードが一致しません。", form.errors["password2"])
 
 
 # class TestLogoutView(TestCase):
